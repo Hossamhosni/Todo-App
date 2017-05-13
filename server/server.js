@@ -44,7 +44,7 @@ app.get('/todos/:id', (req, res) => {
             if (!todo) {
                 res.status(404).send();
             } else {
-                res.send(todo)
+                res.send({todo})
             }
         }, (e) => {
             res.status(404).send();
