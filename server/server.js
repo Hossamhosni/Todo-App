@@ -1,4 +1,14 @@
 'use strict';
+
+//config
+var env = process.env.NODE_ENV || 'development';
+if (env === "development") {
+  process.env.PORT = 3000;
+  process.env.MONGOLAB_URI = "mongodb://localhost:27017/TodoApp";
+} else if (env === "test") {
+  process.env.PORT = 3000;
+  process.env.MONGOLAB_URI = "mongodb://localhost:27017/TodoAppTest";
+}
 // imports
 const _ = require('lodash');
 const express = require('express');
@@ -12,7 +22,7 @@ var {User} = require('./models/user');
 
 // setting app and the port settings
 var app = express();
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT);
 app.use(bodyParser.json());
 
 // Post route for adding todos to the database
